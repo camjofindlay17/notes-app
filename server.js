@@ -12,10 +12,10 @@ app.use(express.static(__dirname))
 fs.readFile("db/db.json","utf8", (err, data) => {
 
     if (err) throw Error
-    const  data = JSON.parse(data);
+    const  notes = JSON.parse(data);
 
     function updateJson() {
-        fs.writeFile("db/db.json",JSON.stringify(data,'\t'),err => {
+        fs.writeFile("db/db.json",JSON.stringify(notes,'\t'),err => {
             if (err) new Error
             return true
         })
@@ -34,7 +34,7 @@ fs.readFile("db/db.json","utf8", (err, data) => {
     })
 
     app.get("/api/notes/:id", function(req, res) {
-        res.json(data[req.params.id])
+        res.json(notes[req.params.id])
     })
 
 
